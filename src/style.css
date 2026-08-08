@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  font-family: 'Roboto', sans-serif;
+}
+
+@theme {
+}
