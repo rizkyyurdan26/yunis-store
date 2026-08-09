@@ -5,60 +5,70 @@ import { ref } from 'vue'
 
 export const useProductStore = defineStore('product', () => {
   const dataProduct = ref([])
-  const loading = ref(false)
-  const error = ref(null)
+
+  const loadingGet = ref(false)
+  const loadingCreate = ref(false)
+  const loadingGetDetail = ref(new Set())
+  const loadingUpdate = ref(new Set())
+  const loadingDelete = ref(new Set())
+
+  const errorGet = ref(null)
+  const errorGetDetail = ref(null)
+  const errorCreate = ref(null)
+  const errorUpdate = ref(null)
+  const errorDelete = ref(null)
 
   async function getAll() {
     dataProduct.value = []
-    loading.value = true
-    error.value = null
+    loadingGet.value = true
+    errorGet.value = null
 
     try {
       const data = await productService.getAll()
       dataProduct.value = data
       return data
     } catch (err) {
-      error.value = getErrorMessage(err)
+      errorGet.value = getErrorMessage(err)
       throw err
     } finally {
-      loading.value = false
+      loadingGet.value = false
     }
   }
 
   async function getDetail(product_id) {
-    loading.value = true
-    error.value = null
+    loadingGetDetail.value.add(product_id)
+    errorGetDetail.value = null
 
     try {
       const data = await productService.getDetail(product_id)
       return data
     } catch (err) {
-      error.value = getErrorMessage(err)
+      errorGetDetail.value = getErrorMessage(err)
       throw err
     } finally {
-      loading.value = false
+      loadingGetDetail.value.delete(product_id)
     }
   }
 
   async function createProduct(payload) {
-    loading.value = true
-    error.value = null
+    loadingCreate.value = true
+    errorCreate.value = null
 
     try {
       const data = await productService.create(payload)
       dataProduct.value.unshift(data)
       return data
     } catch (err) {
-      error.value = getErrorMessage(err)
+      errorCreate.value = getErrorMessage(err)
       throw err
     } finally {
-      loading.value = false
+      loadingCreate.value = false
     }
   }
 
   async function updateProduct(product_id, payload) {
-    loading.value = true
-    error.value = null
+    loadingUpdate.value.add(product_id)
+    errorUpdate.value = null
 
     try {
       const data = await productService.update(product_id, payload)
@@ -73,16 +83,16 @@ export const useProductStore = defineStore('product', () => {
 
       return data
     } catch (err) {
-      error.value = getErrorMessage(err)
+      errorUpdate.value = getErrorMessage(err)
       throw err
     } finally {
-      loading.value = false
+      loadingUpdate.value.delete(product_id)
     }
   }
 
   async function deleteProduct(product_id) {
-    loading.value = true
-    error.value = null
+    loadingDelete.value.add(product_id)
+    errorDelete.value = null
 
     try {
       await productService.delete(product_id)
@@ -90,17 +100,25 @@ export const useProductStore = defineStore('product', () => {
         (item) => String(item.product_id) !== String(product_id),
       )
     } catch (err) {
-      error.value = getErrorMessage(err)
+      errorDelete.value = getErrorMessage(err)
       throw err
     } finally {
-      loading.value = false
+      loadingDelete.value.delete(product_id)
     }
   }
 
   return {
     dataProduct,
-    loading,
-    error,
+    loadingGet,
+    loadingGetDetail,
+    loadingCreate,
+    loadingUpdate,
+    loadingDelete,
+    errorGet,
+    errorGetDetail,
+    errorCreate,
+    errorUpdate,
+    errorDelete,
     getAll,
     getDetail,
     createProduct,

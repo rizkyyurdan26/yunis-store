@@ -50,4 +50,5 @@ npm run lint
 - style: tailwindcss vite (https://tailwindcss.com/docs/installation/using-vite)
 - integration: axios (npm install axios)
 - font: Roboto (google font)
+- table: https://borisflesch.github.io/vue-good-table-next/guide/
 ```

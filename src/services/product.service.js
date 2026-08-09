@@ -2,7 +2,7 @@ import api from './api'
 
 export const productService = {
   async getAll() {
-    const res = await api.get('/rest/v1/products?select=*')
+    const res = await api.get('/rest/v1/products?select=product_id,product_name,price,stock,is_active')
     // console.log(res.data)
     return res.data
   },

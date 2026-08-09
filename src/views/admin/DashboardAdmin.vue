@@ -1,15 +1,15 @@
 <template>
-  <div>Dashboard admin</div>
+    <div>
+        <Title text="Welcome to Dashboard Admin"/>
+    </div>
 </template>
 
 <script setup>
-import { productService } from '@/services/product.service';
-import { onMounted } from 'vue';
+import Title from '@/components/common/Title.vue';
 
-const product = productService
 
-onMounted(async() => {
-  await product.getAll()
-  await product.getDetail("fe578f40-c9ab-44cf-b5ab-5431c8b1eb43")
-})
 </script>
+
+<style lang="scss" scoped>
+
+</style>
