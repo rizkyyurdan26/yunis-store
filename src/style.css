@@ -1,4 +1,7 @@
 @import 'tailwindcss';
+@plugin "daisyui" {
+  themes: light --default, dark;
+};
 
 html {
   scroll-behavior: smooth;
@@ -9,10 +12,11 @@ html {
 }
 
 @theme {
-  --color-mainbg: var(--color-amber-600);
-  --color-form-border: var(--color-slate-400);
-  --color-main-border: var(--color-slate-300);
-  --color-hover-border: var(--color-slate-100);
+  --color-main: var(--color-amber-600);
+  --color-text-secondary: var(--color-slate-600);
+  --color-border-form: var(--color-slate-400);
+  --color-border-main: var(--color-slate-300);
+  --color-border-hover: var(--color-slate-100);
 
   --color-success: var(--color-green-600);
   --color-brave: var(--color-blue-700);

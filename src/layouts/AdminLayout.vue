@@ -14,6 +14,5 @@
 </template>
 
 <script setup>
-import SidebarAdmin from '@/components/ui/SidebarAdmin.vue';
-
+import SidebarAdmin from '@/components/ui/SidebarAdmin.vue'
 </script>

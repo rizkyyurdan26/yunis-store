@@ -3,12 +3,15 @@
     @click="isShow = !isShow"
     :class="[
       'absolute z-50 cursor-pointer p-2 rounded-full transition-all duration-500',
-      isShow ? 'left-50 top-5 text-white' : 'left-0 top-1/2 -translate-y-1/2 md:translate-y-0 md:top-5 md:left-0 text-white bg-mainbg',
+      isShow
+        ? 'left-50 top-5 text-white'
+        : 'left-0 top-1/2 -translate-y-1/2 md:translate-y-0 md:top-5 md:left-0 text-white bg-main',
     ]"
   >
     <Icon icon="ep:menu" class="w-5 h-5 md:h-7 md:w-7" />
   </button>
 
+  <!-- Overlay -->
   <div
     v-if="isShow"
     class="absolute w-full min-h-dvh lg:hidden bg-black/20 z-10"
@@ -17,7 +20,7 @@
 
   <aside
     :class="[
-      'fixed md:sticky min-h-dvh z-30 inset-0 bg-mainbg border-r border-main-border px-5 py-15 transition-all transform duration-500 overflow-hidden',
+      'fixed md:sticky min-h-dvh z-30 inset-0 bg-main shadow-r-xl px-5 py-15 transition-all transform duration-500 overflow-hidden',
       isShow ? 'translate-x-0 w-64' : '-translate-x-full w-0 fixed',
     ]"
   >
@@ -40,6 +43,10 @@
         icon="icon-park-solid:transaction"
       />
     </nav>
+
+    <span>Current</span>
+  <input type="checkbox" value="dark" class="toggle theme-controller" />
+  <span>Synthwave</span>
   </aside>
 </template>
 
@@ -51,9 +58,9 @@ import { onMounted, ref } from 'vue'
 const isShow = ref(false)
 
 const handleCloseMobile = () => {
-    if (window.innerWidth < 1024) {
-        isShow.value = false
-    }
+  if (window.innerWidth < 1024) {
+    isShow.value = false
+  }
 }
 
 onMounted(() => {

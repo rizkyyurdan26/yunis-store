@@ -1,8 +1,8 @@
 <template>
   <section id="product" class="flex flex-col">
-    <Title text="Product Store"/>
+    <Title text="Product Store" />
     <div class="flex items-start mt-5">
-      <ActionButton text="Create new" icon="tabler:plus-filled" to="/admin/product/create"/>
+      <LinkButton text="Create new" icon="tabler:plus-filled" to="/admin/product/create" />
     </div>
     <div class="overflow-x-auto mt-5">
       <MainTable
@@ -11,14 +11,14 @@
         key-index="product_id"
         @detail="handleDetail"
       >
-      
-    </MainTable>
+      </MainTable>
     </div>
   </section>
 </template>
 
 <script setup>
 import ActionButton from '@/components/common/ActionButton.vue'
+import LinkButton from '@/components/common/LinkButton.vue'
 import Title from '@/components/common/Title.vue'
 import MainTable from '@/components/table/MainTable.vue'
 import { useProductStore } from '@/stores/product.store'
@@ -32,9 +32,9 @@ const router = useRouter()
 
 const columns = [
   { key: 'product_name', label: 'Nama Product' },
-  { key: 'price', label: 'Harga', format: useCurrency},
+  { key: 'price', label: 'Harga', format: useCurrency },
   { key: 'stock', label: 'Stok' },
-  { key: 'is_active', label: 'Status', format: useFormatStatus},
+  { key: 'is_active', label: 'Status', format: useFormatStatus },
 ]
 
 const handleDetail = (product_id) => {
