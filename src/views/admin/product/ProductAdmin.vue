@@ -11,6 +11,7 @@
         key-index="product_id"
         @detail="handleDetail"
         @delete="handleDelete"
+        @update="handleUpdate"
       >
       </MainTable>
     </div>
@@ -18,7 +19,6 @@
 </template>
 
 <script setup>
-import ActionButton from '@/components/common/ActionButton.vue'
 import LinkButton from '@/components/common/LinkButton.vue'
 import Title from '@/components/common/Title.vue'
 import MainTable from '@/components/table/MainTable.vue'
@@ -40,6 +40,10 @@ const columns = [
 
 const handleDetail = (product_id) => {
   router.push(`/admin/product/${product_id}`)
+}
+
+const handleUpdate = (item) => {
+  router.push(`/admin/product/update/${item.product_id}`)
 }
 
 const handleDelete = async (item) => {

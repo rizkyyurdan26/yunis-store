@@ -3,26 +3,32 @@ import api from '@/services/api'
 export const imageService = (bucket) => {
   return {
     async upload(files) {
-      if (!files) return []
+  if (!files) return []
 
-      const fileList = Array.isArray(files) ? files : [files]
-      if (!fileList.length) return []
+  const fileList = Array.isArray(files) ? files : [files]
+  if (!fileList.length) return []
 
-      const urls = []
+  const urls = []
 
-      for (const file of fileList) {
-        const fileExt = file.name.split('.').pop()
-        const fileName = `${Date.now()}-${fileExt}`
+  for (const item of fileList) {
+    if (typeof item === 'string') {
+      urls.push(item)
+      continue
+    }
 
-        await api.post(`/storage/v1/object/${bucket}/${fileName}`, file, {
-          headers: { 'Content-Type': file.type },
-        })
+    const fileExt = item.name.split('.').pop()
+    const fileName = `${Date.now()}-${fileExt}`
 
-        urls.push(`${api.defaults.baseURL}/storage/v1/object/public/${bucket}/${fileName}`)
-      }
+    await api.post(`/storage/v1/object/${bucket}/${fileName}`, item, {
+      headers: { 'Content-Type': item.type },
+    })
 
-      return urls
-    },
+    urls.push(`${api.defaults.baseURL}/storage/v1/object/public/${bucket}/${fileName}`)
+  }
+
+  return urls
+},
+    
 
     async remove(urls) {
       if (!urls) return

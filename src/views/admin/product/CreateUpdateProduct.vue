@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Title text="Create Product" />
+    <Title :text="isUpdate ? 'Update Product' : 'Create Product'" />
 
     <form @submit.prevent="handleSubmit" class="flex flex-col w-full max-w-lg mt-10 gap-5">
       <FormInput
@@ -27,10 +27,10 @@
         placeholder="Ex: Input tentang produk, spesifikasi, kelebihan, dll "
         v-model="form.description"
       />
-      <FormInputFile v-model="form.images" label="Gambar Product : (max 500kb / image)" multiple/>
+      <FormInputFile v-model="form.images" label="Gambar Product : (max 500kb / image)" multiple />
 
       <div>
-        <ActionButton type="submit" text="Submit" />
+        <ActionButton type="submit" :text="isUpdate ? 'Update' : 'Submit'" />
       </div>
     </form>
   </div>
@@ -44,11 +44,13 @@ import FormInputFile from '@/components/form/FormInputFile.vue'
 import FormSelect from '@/components/form/FormSelect.vue'
 import FormTexArea from '@/components/form/FormTexArea.vue'
 import { useProductStore } from '@/stores/product.store'
-import { reactive, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { onMounted, reactive, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 const store = useProductStore()
 const router = useRouter()
+const route = useRoute()
+const isUpdate = ref(false)
 
 const form = reactive({
   product_name: '',
@@ -66,15 +68,47 @@ const options = ref([
 ])
 
 const handleSubmit = async () => {
-  if (confirm('Apakah data sudah sesuai?')) {
-    try {
-      await store.createProduct(form)
-      alert('Produk berhasil di upload ✅')
-      router.push('/admin/product')
-    } catch (err) {
-      alert(`Gagal create: ${err.message}`)
+  if (isUpdate.value) {
+    if (confirm(`Update data ini: ${form.product_name}?`)) {
+      try {
+        await store.updateProduct(route.params.product_id, form)
+        alert('Produk berhasil di update ✅')
+        router.push('/admin/product')
+      } catch (err) {
+        alert(`Gagal update: ${err.message}`)
+      }
+    }
+  } else {
+    if (confirm('Apakah data sudah sesuai?')) {
+      try {
+        await store.createProduct(form)
+        alert('Produk berhasil di upload ✅')
+        router.push('/admin/product')
+      } catch (err) {
+        alert(`Gagal create: ${err.message}`)
+      }
     }
   }
+
   // console.log({...form})
 }
+
+onMounted(async () => {
+  if (route.params.product_id) {
+    isUpdate.value = true
+
+    const dataEdit = await store.getDetail(route.params.product_id)
+
+    if (dataEdit) {
+      form.product_name = dataEdit.product_name
+      form.price = dataEdit.price
+      form.stock = dataEdit.stock
+      form.is_active = dataEdit.is_active
+      form.discount = dataEdit.discount
+      form.description = dataEdit.description
+      form.images = [...(dataEdit.images ?? [])]
+    }
+    // console.log(dataEdit)
+  }
+})
 </script>

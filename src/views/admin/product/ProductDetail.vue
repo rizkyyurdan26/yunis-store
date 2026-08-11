@@ -2,9 +2,9 @@
   <section id="product-detail" class="m-5">
     <BackButton />
     <Title text="Product Detail" class="mt-5" />
-    <div class="grid grid-cols-1 md:grid-cols-2 mt-10 gap-10">
+    <div v-if="detailData" class="grid grid-cols-1 md:grid-cols-2 mt-10 gap-10">
       <!-- Image -->
-      <div v-if="detailData" class="flex flex-col items-center">
+      <div v-if="detailData.images?.length" class="flex flex-col items-center">
         <img :src="selectedImage || detailData.images[0]" alt="main-image" class="object-cover h-100 w-100" />
         <div class="grid grid-cols-3 mt-5 gap-5" >
           <img v-for="img in detailData.images" class="border border-border-form p-2 rounded-lg object-cover h-20 w-20" :src="img"  @click="selectedImage = img"/>
@@ -12,7 +12,7 @@
       </div>
 
       <!-- Content -->
-      <div v-if="detailData" class="flex flex-col items-start">
+      <div class="flex flex-col items-start">
         <h3 class="capitalize font-semibold text-xl md:text-2xl">{{ detailData.product_name }}</h3>
         <span
           :class="[
@@ -58,6 +58,6 @@ const selectedImage = ref(null)
 
 onMounted(async () => {
   detailData.value = await productStore.getDetail(route.params.product_id)
-  console.log(detailData.value)
+  // console.log(detailData.value)
 })
 </script>

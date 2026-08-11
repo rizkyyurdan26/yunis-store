@@ -30,8 +30,8 @@
           <ActionButton
             icon="mdi:edit"
             color="bg-warning"
-            @click="$emit('edit', item)"
-            title="Edit"
+            @click="$emit('update', item)"
+            title="Update"
           />
           <ActionButton
             icon="icon-park-solid:delete"
@@ -64,5 +64,5 @@ defineProps({
   },
 })
 
-defineEmits(['detail', 'edit', 'delete'])
+defineEmits(['detail', 'update', 'delete'])
 </script>

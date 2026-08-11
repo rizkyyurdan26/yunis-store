@@ -77,7 +77,10 @@ export const useProductStore = defineStore('product', () => {
     errorUpdate.value = null
 
     try {
-      const data = await productService.update(product_id, payload)
+      const imageUrls = await handleImage.upload(payload.images)
+      const finalData = { ...payload, images: imageUrls }
+
+      const data = await productService.update(product_id, finalData)
 
       const idx = dataProduct.value.findIndex(
         (item) => String(item.product_id) === String(product_id),

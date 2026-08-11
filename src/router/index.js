@@ -55,6 +55,11 @@ const routes = [
         name: 'product-detail',
         component: ProductDetail,
       },
+      {
+        path: 'product/update/:product_id',
+        name: 'update-product',
+        component: CreateUpdateProduct
+      },
     ],
   },
 ]
