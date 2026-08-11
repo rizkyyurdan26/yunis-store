@@ -10,6 +10,7 @@
         :data="product.dataProduct"
         key-index="product_id"
         @detail="handleDetail"
+        @delete="handleDelete"
       >
       </MainTable>
     </div>
@@ -39,6 +40,18 @@ const columns = [
 
 const handleDetail = (product_id) => {
   router.push(`/admin/product/${product_id}`)
+}
+
+const handleDelete = async (item) => {
+  if (confirm(`Delete data ${item.product_name}?`)) {
+    try {
+      await product.deleteProduct(item.product_id)
+      alert(`Data ${item.product_name} berhasil dihapus`)
+    } catch (err) {
+      console.error(err)
+      alert(`Gagal menghapus data: ${err.message}`)
+    }
+  }
 }
 
 onMounted(async () => {

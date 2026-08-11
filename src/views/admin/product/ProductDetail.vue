@@ -2,17 +2,17 @@
   <section id="product-detail" class="m-5">
     <BackButton />
     <Title text="Product Detail" class="mt-5" />
-    <div class="grid grid-cols-1 md:grid-cols-2 mt-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 mt-10 gap-10">
       <!-- Image -->
       <div v-if="detailData" class="flex flex-col items-center">
-        <img :src="detailData.images[0]" alt="main-image" width="300" />
-        <div class="grid grid-cols-3 mt-5" v-for="img in detailData.images">
-          <img class="bg-hover-border p-3 rounded-lg" :src="img" width="100" />
+        <img :src="selectedImage || detailData.images[0]" alt="main-image" class="object-cover h-100 w-100" />
+        <div class="grid grid-cols-3 mt-5 gap-5" >
+          <img v-for="img in detailData.images" class="border border-border-form p-2 rounded-lg object-cover h-20 w-20" :src="img"  @click="selectedImage = img"/>
         </div>
       </div>
 
       <!-- Content -->
-      <div v-if="detailData" class="flex flex-col mt-10 items-start">
+      <div v-if="detailData" class="flex flex-col items-start">
         <h3 class="capitalize font-semibold text-xl md:text-2xl">{{ detailData.product_name }}</h3>
         <span
           :class="[
@@ -24,8 +24,13 @@
           >Status: {{ detailData.is_active === true ? 'Tersedia' : 'Tidak Tersedia' }}</span
         >
 
-        <p class="text-xl font-semibold mt-5">{{ useCurrency(detailData.price) }}</p>
-        <p class="mt-2 text-lg">Deskripsi: {{ detailData.description }}</p>
+        <div>
+          <p class="text-lg font-semibold mt-5 text-success">Harga Asli: {{ useCurrency(detailData.price) }}</p>
+          <p class="text-lg font-semibold text-warning">Diskon: {{ useCurrency(detailData.discount) }}</p>
+          <p class="text-lg font-semibold text-brave">Harga Final: {{ useCurrency(detailData.final_price) }}</p>
+
+        </div>
+        <p class="mt-5 text-lg">Deskripsi: {{ detailData.description }}</p>
 
         <h4 class="mt-5 font-semibold text-lg">System Information:</h4>
         <ul class="list-disc list-outside ml-5 mt-2 text-lg">
@@ -49,9 +54,10 @@ import { useRoute } from 'vue-router'
 const productStore = useProductStore()
 const detailData = ref(null)
 const route = useRoute()
+const selectedImage = ref(null)
 
 onMounted(async () => {
   detailData.value = await productStore.getDetail(route.params.product_id)
-  // console.log(detailData.value)
+  console.log(detailData.value)
 })
 </script>

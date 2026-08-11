@@ -36,7 +36,7 @@
           <ActionButton
             icon="icon-park-solid:delete"
             color="bg-danger"
-            @click="$emit('delete')"
+            @click="$emit('delete', item)"
             title="Delete"
           />
         </td>

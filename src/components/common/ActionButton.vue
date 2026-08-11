@@ -1,5 +1,6 @@
 <template>
   <button
+  :type="type"
     :title="title"
     :class="[
       'flex gap-2 items-center cursor-pointer text-white py-2 rounded font-semibold text-lg hover:scale-110 duration-300',
@@ -26,6 +27,10 @@ defineProps({
     type: String,
     default: 'bg-main',
   },
+  type: {
+    type: String,
+    default: 'button'
+  }
 })
 
 defineEmits(['click'])

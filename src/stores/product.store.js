@@ -1,7 +1,10 @@
+import { imageService } from '@/services/image.service'
 import { productService } from '@/services/product.service'
 import { getErrorMessage } from '@/utils/error'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+
+const handleImage = imageService('product-images')
 
 export const useProductStore = defineStore('product', () => {
   const dataProduct = ref([])
@@ -55,7 +58,10 @@ export const useProductStore = defineStore('product', () => {
     errorCreate.value = null
 
     try {
-      const data = await productService.create(payload)
+      const imageUrls = await handleImage.upload(payload.images)
+      const finalData = { ...payload, images: imageUrls }
+
+      const data = await productService.create(finalData)
       dataProduct.value.unshift(data)
       return data
     } catch (err) {
@@ -95,7 +101,12 @@ export const useProductStore = defineStore('product', () => {
     errorDelete.value = null
 
     try {
+      const product = dataProduct.value.find(
+        (item) => String(item.product_id) === String(product_id),
+      )
+
       await productService.delete(product_id)
+      await handleImage.remove(product?.images ?? [])
       dataProduct.value = dataProduct.value.filter(
         (item) => String(item.product_id) !== String(product_id),
       )

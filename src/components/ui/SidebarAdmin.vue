@@ -35,18 +35,16 @@
     <nav class="flex flex-col mt-15 gap-5 w-full" @click="handleCloseMobile">
       <NavButton exact text="Dashboard" to="/admin" icon="material-symbols:dashboard" />
       <NavButton text="Product" to="/admin/product" icon="ix:product" />
-      <NavButton text="Customer" to="/admin/customer" icon="ix:customer-filled" />
+      <!-- <NavButton text="Customer" to="/admin/customer" icon="ix:customer-filled" />
       <NavButton text="Transaction" to="/admin/transaction" icon="grommet-icons:transaction" />
       <NavButton
         text="Transaction Detail"
         to="/admin/transaction-detail"
         icon="icon-park-solid:transaction"
-      />
+      /> -->
     </nav>
 
-    <span>Current</span>
-  <input type="checkbox" value="dark" class="toggle theme-controller" />
-  <span>Synthwave</span>
+    
   </aside>
 </template>
 
