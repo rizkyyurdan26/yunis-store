@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" fill="none">
+  <defs>
+    <linearGradient id="jar" x1="117" x2="287" y1="240" y2="400" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF9F0"/><stop offset="1" stop-color="#E8CDB8"/></linearGradient>
+    <linearGradient id="gold" x1="130" x2="272" y1="200" y2="240" gradientUnits="userSpaceOnUse"><stop stop-color="#8F5B24"/><stop offset=".45" stop-color="#E7BC78"/><stop offset="1" stop-color="#A56B2F"/></linearGradient>
+  </defs>
+  <ellipse cx="200" cy="423" fill="#725331" fill-opacity=".12" rx="120" ry="17"/>
+  <rect x="113" y="213" width="174" height="44" rx="12" fill="url(#gold)"/>
+  <path d="M122 252h156v137a24 24 0 0 1-24 24h-108a24 24 0 0 1-24-24V252Z" fill="url(#jar)" stroke="#D8BFA5" stroke-width="3"/>
+  <path d="M139 303h122" stroke="#C99A68" stroke-opacity=".55" stroke-width="2"/>
+  <text x="200" y="333" fill="#704D36" font-family="Georgia,serif" font-size="19" letter-spacing="3" text-anchor="middle">YUNIS</text>
+  <text x="200" y="357" fill="#96775F" font-family="Arial,sans-serif" font-size="9" letter-spacing="2" text-anchor="middle">RADIANT GLOW CREAM</text>
+</svg>

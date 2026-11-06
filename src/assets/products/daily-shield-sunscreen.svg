@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" fill="none">
+  <defs>
+    <linearGradient id="tube" x1="141" x2="255" y1="120" y2="391" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF9EE"/><stop offset="1" stop-color="#E7D1BC"/></linearGradient>
+    <linearGradient id="cap" x1="163" x2="237" y1="387" y2="435" gradientUnits="userSpaceOnUse"><stop stop-color="#8F5B24"/><stop offset=".5" stop-color="#E4B96E"/><stop offset="1" stop-color="#A56B2F"/></linearGradient>
+  </defs>
+  <ellipse cx="200" cy="439" fill="#725331" fill-opacity=".12" rx="91" ry="14"/>
+  <path d="m142 124 116 12-20 250h-76l-20-262Z" fill="url(#tube)" stroke="#D8BFA5" stroke-width="3"/>
+  <path d="m142 124 116 12-7 32-106-11-3-33Z" fill="#E6D1BB"/>
+  <rect x="163" y="384" width="74" height="50" rx="8" fill="url(#cap)"/>
+  <text x="200" y="237" fill="#704D36" font-family="Georgia,serif" font-size="18" letter-spacing="3" text-anchor="middle">YUNIS</text>
+  <text x="200" y="264" fill="#96775F" font-family="Arial,sans-serif" font-size="10" letter-spacing="1.5" text-anchor="middle">DAILY SHIELD</text>
+  <text x="200" y="300" fill="#A87535" font-family="Georgia,serif" font-size="29" text-anchor="middle">SPF 50+</text>
+</svg>

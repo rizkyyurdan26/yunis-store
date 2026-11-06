@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" fill="none">
+  <defs>
+    <linearGradient id="glass" x1="151" x2="257" y1="207" y2="415" gradientUnits="userSpaceOnUse"><stop stop-color="#F8E8D9" stop-opacity=".9"/><stop offset="1" stop-color="#D9A88A" stop-opacity=".72"/></linearGradient>
+    <linearGradient id="cap" x1="171" x2="232" y1="90" y2="190" gradientUnits="userSpaceOnUse"><stop stop-color="#E6C17D"/><stop offset=".5" stop-color="#9D672F"/><stop offset="1" stop-color="#F1D59A"/></linearGradient>
+  </defs>
+  <ellipse cx="200" cy="423" fill="#725331" fill-opacity=".12" rx="100" ry="16"/>
+  <rect x="178" y="91" width="44" height="92" rx="12" fill="url(#cap)"/>
+  <path d="M192 75a8 8 0 0 1 16 0v25h-16V75Z" fill="#725331"/>
+  <path d="M158 182h84l17 30v177a26 26 0 0 1-26 26h-66a26 26 0 0 1-26-26V212l17-30Z" fill="url(#glass)" stroke="#CDA98F" stroke-width="3"/>
+  <path d="M151 265h98" stroke="#FFF9F0" stroke-opacity=".8" stroke-width="4"/>
+  <text x="200" y="309" fill="#704D36" font-family="Georgia,serif" font-size="17" letter-spacing="3" text-anchor="middle">YUNIS</text>
+  <text x="200" y="333" fill="#96775F" font-family="Arial,sans-serif" font-size="9" letter-spacing="1.5" text-anchor="middle">HYDRA REPAIR SERUM</text>
+  <text x="200" y="353" fill="#96775F" font-family="Arial,sans-serif" font-size="8" text-anchor="middle">30 ml</text>
+</svg>

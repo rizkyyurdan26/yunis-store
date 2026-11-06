@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" fill="none">
+  <defs>
+    <linearGradient id="metal" x1="142" x2="256" y1="328" y2="372" gradientUnits="userSpaceOnUse"><stop stop-color="#8F5B24"/><stop offset=".45" stop-color="#E7BC78"/><stop offset="1" stop-color="#A56B2F"/></linearGradient>
+    <linearGradient id="lip" x1="168" x2="228" y1="99" y2="241" gradientUnits="userSpaceOnUse"><stop stop-color="#D89082"/><stop offset="1" stop-color="#9E504C"/></linearGradient>
+  </defs>
+  <ellipse cx="200" cy="421" fill="#725331" fill-opacity=".12" rx="103" ry="16"/>
+  <path d="M165 128h70v205h-70z" fill="url(#lip)"/>
+  <path d="M165 128c0-34 21-63 44-63 14 0 26 10 26 25v38h-70Z" fill="#B96A63"/>
+  <path d="M153 329h94v71h-94z" fill="url(#metal)"/>
+  <path d="M164 400h72v20h-72z" fill="#69472F"/>
+  <text x="200" y="365" fill="#FFF5E9" font-family="Georgia,serif" font-size="13" letter-spacing="2" text-anchor="middle">YUNIS</text>
+</svg>
